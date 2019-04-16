@@ -1,0 +1,31 @@
+{% extends "system/base.html" %}
+{% load myfilters %}
+
+
+{% block content %}
+
+<div class="container">
+
+  <h1>Recently Added User Recipes</h1>
+  <div class="row">
+    {% for recipe in recent_user_recipes %}
+      <div class="col-md-3 col-sm-4">
+        {% include "components/recipe_card.html" %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <hr>
+
+  <h1>Most Starred Yummly Recipes</h1>
+  <div class="row">
+    {% for recipe in most_saved_yummly_recipes %}
+      <div class="col-md-3 col-sm-4">
+        {% include "components/recipe_card.html" %}
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+{% endblock content %}
