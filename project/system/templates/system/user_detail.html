@@ -1,0 +1,87 @@
+{% extends "system/base.html" %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="panel panel-dark">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong>{{ viewed_user.username }}'s Profile</strong></h3>
+      </div>
+      <div class="panel-body">
+        <div class="well">
+          <div class="row">
+            <div class="col-xs-2">
+              <p class="lead text-muted">Name</p>
+            </div>
+            <div class="col-xs-10">
+              {% if viewed_user.first_name or viewed_user.last_name %}
+                <p class="lead">{{ viewed_user.first_name }} {{ viewed_user.last_name }}</p>
+              {% else %}
+                <p class="text-muted">Not specified</p>
+              {% endif %}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-xs-2">
+              <p class="lead text-muted">Bio</p>
+            </div>
+            <div class="col-xs-10">
+              {% if viewed_user.profile.bio %}
+                <p class="formatted">{{ viewed_user.profile.bio }}</p>
+              {% else %}
+                <p class="text-muted">None</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-primary created-recipes">
+          <div class="panel-heading">
+            <h4 class="panel-title">Created Recipes</h4>
+          </div>
+          <div class="panel-body">
+            {% if viewed_user_created_recipes %}
+              <div class="row">
+                {% for recipe in viewed_user_created_recipes|slice:':4' %}
+                  <div class="col-md-3 col-sm-4">
+                    {% include 'components/recipe_card.html' %}
+                  </div>
+                {% endfor %}
+              </div>
+
+              <div class="list-group">
+                {% for recipe in viewed_user_created_recipes|slice:'4:' %}
+                  {% include 'components/recipe_list_item.html' %}
+                {% endfor %}
+              </div>
+            {% else %}
+              <p class="text-muted">No created recipes yet.</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="panel panel-info favorited-recipes">
+          <div class="panel-heading">
+            <h4 class="panel-title">Favorited Recipes</h4>
+          </div>
+          <div class="panel-body">
+            {% if viewed_user_saved_recipes %}
+              <div class="list-group">
+                {% for recipe in viewed_user_saved_recipes %}
+                  {% include 'components/recipe_list_item.html' %}
+                {% endfor %}
+              </div>
+            {% else %}
+              <p class="text-muted">No favorited recipes yet.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+{% endblock content %}
