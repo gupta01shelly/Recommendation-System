@@ -1,0 +1,124 @@
+.hidden {
+  display: none; }
+
+.wide {
+  width: 100%; }
+
+form div div.errors p.text-danger {
+  line-height: 24px; }
+
+.formatted {
+  white-space: pre-wrap; }
+
+.navbar .navbar-header .navbar-brand {
+  color: #00FF99;
+  font-weight: bold; }
+
+.navbar-form {
+  position: relative; }
+  @media screen and (max-width: 767px) {
+    .navbar-form .btn-search {
+      position: absolute;
+      right: 15px;
+      top: 10px; }
+    .navbar-form input {
+      padding-right: 40px; } }
+  .navbar-form .fa-search {
+    color: #00FF99; }
+
+.navbar-brand {
+  padding: 5px 10px; }
+  .navbar-brand img {
+    height: 100%; }
+  .navbar-brand span {
+    line-height: 40px; }
+
+.recipe-card {
+  transition: all 0.1s ease-in-out; }
+  .recipe-card .panel-heading a {
+    text-decoration: none;
+    color: white; }
+  .recipe-card .panel-heading .panel-title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 1.1em; }
+  .recipe-card .panel-body {
+    text-align: center; }
+    .recipe-card .panel-body .img-wrapper {
+      height: 170px;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: center;
+      overflow: hidden; }
+      .recipe-card .panel-body .img-wrapper a {
+        align-self: center;
+        width: 100%; }
+      .recipe-card .panel-body .img-wrapper img {
+        width: 100%; }
+  .recipe-card:hover {
+    transform: scale(1.03);
+    z-index: 10;
+    box-shadow: 0px 0px 6px 1px #BBBBBB; }
+
+.recipe-list-item {
+  transition: all 0.1s ease-in-out; }
+  .recipe-list-item img.media-object {
+    max-height: 50px; }
+  .recipe-list-item .media-right {
+    width: 15%; }
+  .recipe-list-item a {
+    text-decoration: none;
+    color: inherit; }
+  .recipe-list-item:hover {
+    transform: scale(1.02);
+    z-index: 10;
+    box-shadow: 0px 0px 3px 1px #E6E6E6; }
+
+.recipe-detail-card.yummly .list-group .list-group-item:nth-child(1) {
+  background-color: #D9BBEB;
+  color: #222222; }
+.recipe-detail-card.user .list-group .list-group-item:nth-child(1) {
+  background-color: #A0C5EF;
+  color: #222222; }
+
+.flavor-percents li {
+  height: 3em; }
+.flavor-percents .progress-label {
+  float: left;
+  margin-right: 0.9em; }
+.flavor-percents .progress-bar-wrapper {
+  float: right;
+  padding-top: .5em;
+  width: 70%; }
+
+.container div.jumbotron {
+  background-color: #D8FFEF;
+  border-radius: 5px;
+  border: 1px solid #00B26B; }
+
+.about-cards .panel {
+  min-height: 200px; }
+
+.panel-dark {
+  border-color: #222222; }
+  .panel-dark > .panel-heading {
+    background-color: #222222;
+    color: #FFFFFF; }
+
+.favorited-recipes .panel-body {
+  max-height: 400px;
+  overflow-y: auto; }
+
+.created-recipes .panel-body {
+  max-height: 500px;
+  overflow-y: auto; }
+  .created-recipes .panel-body .recipe-card {
+    border-color: #BBBBBB; }
+    .created-recipes .panel-body .recipe-card .panel-heading {
+      background-color: #E6E6E6;
+      border-bottom-color: #BBBBBB; }
+      .created-recipes .panel-body .recipe-card .panel-heading .panel-title {
+        color: black; }
+
+/*# sourceMappingURL=style.css.map */

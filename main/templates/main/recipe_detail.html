@@ -1,0 +1,107 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+
+	<div class="container">
+
+    {% if recipe.is_yummly_recipe %}
+      <div class="panel panel-info recipe-detail-card yummly">
+    {% else %}
+      <div class="panel panel-primary recipe-detail-card user">
+    {% endif %}
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>{{ recipe.name }}</strong></h3>
+        </div>
+        <div class="panel-body">
+          <div class="col-md-6 col-md-push-3">
+            <div class="col-md-8 col-md-offset-2">
+              {% if recipe.is_yummly_recipe %}
+                <img src="{{ recipe.yummly_image_url }}" class="img-responsive img-thumbnail wide">
+              {% else %}
+                <a href="/media/{{ recipe.photo }}"><img src="/media/{{ recipe.photo }}" class="img-responsive img-thumbnail wide"></a>
+                {# <a href="{% static 'main/images/ReciPy Logo Gray.png' %}"><img src="{% static 'main/images/ReciPy Logo Gray.png' %}" class="img-responsive img-wide img-thumbnail"></a> #}
+              {% endif %}
+            </div>
+            <div class="col-md-12 text-center">
+              <h2>{{ recipe.name }}</h2>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-md-pull-6">
+            {% if recipe.is_yummly_recipe %}
+              <div>
+                <a class="btn btn-default wide" href="https://yummly.com/recipe/{{ recipe.yummly_url }}" target="_blank">
+                  <span class="text-muted">Source:</span> Yummly - {{ recipe.yummly_source }}
+                </a>
+              </div>
+              <br>
+              <ul class="list-group flavor-percents">
+                <li class="list-group-item list-group-item-info">Flavor Profile</li>
+
+                {% for flavor in flavors %}
+                  <li class="list-group-item list-group-item-default">
+                    <p class="progress-label">{{ flavor.name|capfirst }}</p>
+                    <div class="progress-bar-wrapper">
+                      <div class="progress">
+                        <div class="progress-bar" style="width: {{ flavor.value }}%;"></div>
+                      </div>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <div>
+                <a class="btn btn-default wide" href="{% url 'user_detail' recipe.creator.user.username %}">
+                  <span class="text-muted">Creator: </span>{{ recipe.creator.user.username }}
+                </a>
+              </div>
+              <br>
+              <ul class="list-group">
+                <li class="list-group-item">Instructions</li>
+                <li class="list-group-item formatted">{{ recipe.instructions }}</li>
+              </ul>
+            {% endif %}
+          </div>
+
+          <div class="col-md-3">
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-info">Ingredients</li>
+              {% for ingredient in recipe.ingredients.all %}
+                <a class="list-group-item list-group-item-default" href="{% url 'ingredient_detail' ingredient.id %}">
+                  <span>{{ ingredient.name }}</span>
+                </a>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>{# /panel-body #}
+        <div class="panel-footer">
+          <div class="likeDislikeSaveButtons">
+            <div class="btn-group btn-group" role="group">
+              {% include 'components/save_button.html' %}
+            </div>
+            <div class="btn-group btn-group pull-right" role="group">
+              {% include 'components/like_dislike_buttons.html' %}
+            </div>
+          </div>
+        </div>
+      </div> {# /panel #}
+
+      <hr>
+
+      {% if recipe.is_yummly_recipe %}
+        <h1>Similar Recipes <span class="text-muted">(based on ingredients)</span></h1>
+        <div class="row">
+          {% for recipe in recipe.related_recipes.all|slice:':4' %}
+            <div class="col-md-3 col-sm-4">
+              {% include 'components/recipe_card.html' %}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <h1>Recommendations for User Recipes <span class="text-muted">(in progress)</span></h1>
+      {% endif %}
+
+	</div>
+
+{% endblock content %}

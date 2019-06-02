@@ -1,0 +1,67 @@
+{% load myfilters %}
+
+{% if recipe.is_yummly_recipe %} 
+  <div class="panel panel-info recipe-card yummly">
+{% else %}
+  <div class="panel panel-primary recipe-card user">
+{% endif %}
+    <div class="panel-heading">
+      <a href="{% url 'recipe_detail' recipe.id %}"><h3 class="panel-title" title="{{ recipe.name }}">{{ recipe.name }}</h3></a>
+    </div>
+
+    <div class="panel-body">
+      <div class="img-wrapper">
+        <a href="{% url 'recipe_detail' recipe.id %}">
+          {% if recipe.is_yummly_recipe %}
+            <img src="{{ recipe.yummly_image_url }}" class="img-responsive img-thumbnail center-block">
+          {% else %}
+            <img src="/media/{{ recipe.photo }}" class="img-responsive center-block">
+          {% endif %}
+        </a>
+      </div>
+      {# <img src="{{ recipe.yummly_image_url }}" class="img-responsive img-thumbnail center-block"> #}
+      <p>
+        <span class="text-muted">Creator: </span>
+        {% if recipe.is_yummly_recipe %}
+          <span>Yummly</span>
+        {% else %}
+          <span><a href="{% url 'user_detail' recipe.creator.user.username %}">{{ recipe.creator.user.username }}</a></span>
+        {% endif %}
+      </p>
+      <button type="button" class="ingredients btn btn-default" data-toggle="popover" data-content="{{ recipe.ingredients.all | list_ingredients }}">
+        <span>Ingredients <i class="fa fa-angle-down"></i></span>
+      </button>
+    </div>
+
+    <div class="panel-footer">
+      <div class="likeDislikeSaveButtons">
+        <div class="btn-group" role="group">
+          {% include 'components/save_button.html' %}
+        </div>
+        <div class="btn-group pull-right" role="group">
+          {% include 'components/like_dislike_buttons.html' %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

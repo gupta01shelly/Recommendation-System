@@ -1,0 +1,49 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+	<div class="container">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-md-3 col-md-offset-0 col-xs-6 col-xs-offset-3">
+          <img class="img-responsive" src="{% static 'main/images/ReciPy Logo 2.png' %}">
+        </div>
+        <div class="col-md-9">
+          <h1>Welcome to Recommendation system</h1>
+          <p>Upload Recipes - Get Recommendations</p>
+          {% if not user.is_authenticated %}
+            <a class="btn btn-primary" href="{% url 'user_registration' %}">Register</a>
+            <a class="btn btn-success" href="{% url 'login' %}">Login</a>
+          {% else %}
+            <a class="btn btn-primary" href="{% url 'update_profile' %}">Profile</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    {# <h4>Recipe stream (friends, popular, featured, recent)</h4> #}
+
+    {% if recommended_recipes %}
+      <h2>Recommended Recipes For You <span class="text-muted">(based on your likes)</span></h2>
+      <div class="row">
+        {% for recipe in recommended_recipes|slice:':4' %}
+          <div class="col-md-3 col-sm-4">
+            {% include "components/recipe_card.html" %}
+          </div>
+        {% endfor %}
+      </div>
+    {% elif user.is_authenticated %}
+      <h2>No Recommendations For You <span class="text-muted">(based on your likes)</span></h2>
+      <p>Try liking some <a href="{% url 'recipe_list' %}">recipes</a> to get more results.</p>
+    {% else %}
+      <h1><a href="{% url 'login' %}">Login</a> to get recommendations</h1>
+    {% endif %}
+
+
+	</div>
+
+{% endblock content %}

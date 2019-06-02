@@ -1,0 +1,239 @@
+//////////////////////////////////////////////////////
+// Global colors
+//////////////////////////////////////////////////////
+$green-primary: #00FF99; 
+$green-dark: #00B26B;
+$green-light: #7FFFCC;
+$green-background: #D8FFEF;
+
+$black: #222222;
+$white : #FFFFFF;
+$gray-primary: #999999;
+$gray-light: #BBBBBB;
+$gray-dark: #777777;
+$gray-background: #E6E6E6;
+
+$user-recipe-primary: #2780e3;
+$user-recipe-light: #A0C5EF;
+$yummly-recipe-primary: #9954bb;
+$yummly-recipe-light: #D9BBEB;
+
+
+//////////////////////////////////////////////////////
+// Global styles
+//////////////////////////////////////////////////////
+.hidden {
+  display: none;
+}
+.wide {
+  width: 100%;
+}
+form div div.errors {
+  p.text-danger {
+    line-height: 24px;
+  }
+}
+.formatted {
+  white-space: pre-wrap;
+}
+
+//////////////////////////////////////////////////////
+// Navbar 
+//////////////////////////////////////////////////////
+.navbar .navbar-header .navbar-brand {
+  color: $green-primary;
+  font-weight: bold;
+}
+.navbar-form {
+  position: relative;
+  @media screen and (max-width: 767px) {
+    .btn-search {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+    }
+    input {
+      padding-right: 40px;
+    }
+  }
+  .fa-search {
+    color: $green-primary;
+  }
+}
+.navbar-brand {
+  padding: 5px 10px;
+  img {
+    height: 100%;
+  }
+  span {
+    line-height: 40px;
+  }
+}
+
+
+//////////////////////////////////////////////////////
+// Recipe cards
+//////////////////////////////////////////////////////
+.recipe-card {
+  .panel-heading {
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    .panel-title {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      height: 1.1em;
+    }
+  }
+  .panel-body {
+    text-align: center;
+    .img-wrapper {
+      height: 170px;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      a {
+        align-self: center;
+        width: 100%;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    transform: scale(1.03);
+    z-index: 10;
+    box-shadow: 0px 0px 6px 1px $gray-light;
+  }
+}
+
+//////////////////////////////////////////////////////
+// Recipe list items
+//////////////////////////////////////////////////////
+.recipe-list-item {
+  img.media-object {
+    max-height: 50px;
+  }
+  .media-right {
+    width: 15%;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    transform: scale(1.02);
+    z-index: 10;
+    box-shadow: 0px 0px 3px 1px $gray-background;
+  }
+}
+
+
+//////////////////////////////////////////////////////
+// Recipe detail page
+//////////////////////////////////////////////////////
+.recipe-detail-card {
+
+  &.yummly {
+    .list-group .list-group-item:nth-child(1) {
+      background-color: $yummly-recipe-light;
+      color: $black;
+    }
+  }
+  &.user {
+    .list-group .list-group-item:nth-child(1) {
+      background-color: $user-recipe-light;
+      color: $black;
+    }
+  }
+}
+// .user-recipe-detail-card {
+//   border-color: $user-recipe-primary;
+//   .panel-heading {
+//     background-color: $user-recipe-primary;
+//     color: $white;
+//   }
+//   .list-group {
+//     .list-group-item:nth-child(1) {
+//       background-color: $user-recipe-light;
+//       color: $black;
+//       // border-color: $user-recipe-primary;
+//       // color: $user-recipe-primary;
+//     }
+//     .list-group-item:nth-child(2) {
+//       // border-top-color: $user-recipe-primary;
+//     }
+//   }
+// }
+.flavor-percents {
+  li {
+    height: 3em;
+  }
+  .progress-label {
+    float: left;
+    margin-right: 0.9em;
+  }
+  .progress-bar-wrapper {
+    float: right;
+    padding-top: .5em;
+    width: 70%;
+  }
+}
+
+
+
+//////////////////////////////////////////////////////
+// Home page
+//////////////////////////////////////////////////////
+.container div.jumbotron {
+  background-color: $green-background;
+  border-radius: 5px;
+  border: 1px solid $green-dark;
+}
+
+//////////////////////////////////////////////////////
+// About page
+//////////////////////////////////////////////////////
+.about-cards .panel {
+  min-height: 200px;
+}
+
+
+//////////////////////////////////////////////////////
+// User detail page
+//////////////////////////////////////////////////////
+.panel-dark {
+  &>.panel-heading {
+    background-color: $black;
+    color: $white;
+  }
+  border-color: $black;
+}
+.favorited-recipes .panel-body {
+  max-height: 400px;
+  overflow-y: auto;
+}
+.created-recipes .panel-body {
+  max-height: 500px;
+  overflow-y: auto;
+  .recipe-card {
+    border-color: $gray-light;
+    .panel-heading {
+      background-color: $gray-background;
+      border-bottom-color: $gray-light;
+      .panel-title { 
+        color: black;
+      }
+    }
+  }
+}
+
+
+
+
