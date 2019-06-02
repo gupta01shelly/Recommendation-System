@@ -1,7 +1,4 @@
-# Recommendation-System
-install python
-install django
-install pip
+ReciPy
+======
 
-To run the server
-python manage.py runserver
+### Recipe Recommendation Service
